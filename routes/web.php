@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Models\Category;
+use App\Http\Controllers\ScoreController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,13 +39,18 @@ Route::get('posts', [PostController::class, 'index'])->name('posts');
 Route::get('posts/{post:slug}', [PostController::class, 'view']);
 
 
-Route::get('categories/{category:slug', function (Category $category) {
+Route::get('categories/{category:slug}', function (Category $category) {
     return view('category', [
         'title'=>$category->name,
-        'send' => $category->posts,
+        'posts' => $category->posts,
         'category'=>$category->name
     ]);
 });
 
 
- 
+
+
+Route::get('/scores', [ScoreController::class, 'index']);
+Route::post('/scores/search', [ScoreController::class, 'search']);
+
+Route::post('/scores/add', [ScoreController::class, 'create']);
