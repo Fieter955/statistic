@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Models\Category;
 use App\Http\Controllers\ScoreController;
+use App\Http\Controllers\Pegawai;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +18,9 @@ use App\Http\Controllers\ScoreController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home', [
+        'title'=>'home'
+    ]);
 });
 
 
@@ -39,7 +42,7 @@ Route::get('posts', [PostController::class, 'index'])->name('posts');
 Route::get('posts/{post:slug}', [PostController::class, 'view']);
 
 
-Route::get('categories/{category:slug}', function (Category $category) {
+Route::get('/posts/categories/{category:slug}', function (Category $category) {
     return view('category', [
         'title'=>$category->name,
         'posts' => $category->posts,
@@ -51,6 +54,12 @@ Route::get('categories/{category:slug}', function (Category $category) {
 
 
 Route::get('/scores', [ScoreController::class, 'index']);
-Route::post('/scores/search', [ScoreController::class, 'search']);
+Route::post('/scores', [ScoreController::class, 'search']);
 
 Route::post('/scores/add', [ScoreController::class, 'create']);
+
+
+
+Route::get('/data-pegawai', [Pegawai::class, 'index'])->name('data-pegawai');
+Route::post('/data-pegawai', [Pegawai::class, 'handleForm'])->name('data-pegawai');
+Route::post('/data-pegawai', [ScoreController::class, 'search']);

@@ -62,7 +62,7 @@
                 </table>
 
                 <h2 class="text-xl font-semibold mb-4">Cari Skor</h2>
-                <form method="post" action="/scores/search" class="mb-6">
+                <form method="post" class="mb-6">
                     @csrf
                     <div class="mb-4">
                         <label for="skor" class="mr-4 self-center block">Skor:</label>
@@ -72,7 +72,7 @@
                 </form>
 
                 <h2 class="text-xl font-semibold mb-4">Tambah Skor Baru</h2>
-                <form method="post" action="/scores/add" class="mb-6">
+                <form method="post" class="mb-6">
                     @csrf
                     <div class="flex flex-col mb-4">
                         <div class="mb-4">
