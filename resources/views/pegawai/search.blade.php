@@ -22,7 +22,7 @@
                 <a href="#" class="text-white hover:text-gray-400 ml-5">Data Bergolong</a>
             </div>
             <!-- Tombol Menu untuk Menampilkan/Sembunyikan Sidebar -->
-            <button @click="toggleSidebar" class="lg:hidden text-white focus:outline-none z-10">
+            <button @click="toggleSidebar" class="lg:hidden text-white focus:outline-none z-10 hover:text-gray-400">
                 ☰ Menu
             </button>
         </div>
@@ -35,7 +35,7 @@
             <div class="p-4">
                 <ul class="space-y-2">
                     <li><a href="#" class="text-gray-400 hover:text-white">Dashboard</a></li>
-                    <li><a href="{{route('data-pegawai')}}" class="text-gray-400 hover:text-white">Data Tunggal</a></li>
+                    <li><a href="{{route('data-pegawai')}}" class="text-yellow-400 hover:text-white">Data Tunggal</a></li>
                     <li><a href="{{ route('tabelFrekuensi') }}" class="text-gray-400 hover:text-white">Data Kelompok</a></li>
                     <li><a href="#" class="text-gray-400 hover:text-white">Tabel Deskripsi Data</a></li>
                     <li><a href="#" class="text-gray-400 hover:text-white">Data Bergolong</a></li>
