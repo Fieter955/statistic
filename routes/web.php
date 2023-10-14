@@ -54,7 +54,7 @@ Route::get('/posts/categories/{category:slug}', function (Category $category) {
 
 
 Route::get('/scores', [ScoreController::class, 'index']);
-Route::post('/scores', [ScoreController::class, 'search']);
+//Route::post('/scores', [ScoreController::class, 'search']);
 
 Route::post('/scores/add', [ScoreController::class, 'create']);
 
@@ -62,4 +62,7 @@ Route::post('/scores/add', [ScoreController::class, 'create']);
 
 Route::get('/data-pegawai', [Pegawai::class, 'index'])->name('data-pegawai');
 Route::post('/data-pegawai', [Pegawai::class, 'handleForm'])->name('data-pegawai');
-Route::post('/data-pegawai', [ScoreController::class, 'search']);
+Route::post('/data-pegawai/search', [Pegawai::class, 'search'])->name('search');
+
+Route::get('/tabelFrekuensi', [Pegawai::class, 'tabelFrekuensi'])->name('tabelFrekuensi');
+Route::get('bergolong', [Pegawai::class, 'bergolong'])->name('bergolong');
