@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Score extends Model
 {
-    protected $fillable = ['number', 'skor'];
+    protected $fillable = ['skor'];
     use HasFactory;
 }

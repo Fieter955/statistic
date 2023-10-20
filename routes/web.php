@@ -56,13 +56,23 @@ Route::get('/posts/categories/{category:slug}', function (Category $category) {
 Route::get('/scores', [ScoreController::class, 'index']);
 //Route::post('/scores', [ScoreController::class, 'search']);
 
-Route::post('/scores/add', [ScoreController::class, 'create']);
+//Route::post('/scores/add', [ScoreController::class, 'create'])->name('add');
 
 
-
+//Route::post('/scores/add', [Pegawai::class, 'handleForm'])->name('add');
 Route::get('/data-pegawai', [Pegawai::class, 'index'])->name('data-pegawai');
-Route::post('/data-pegawai', [Pegawai::class, 'handleForm'])->name('data-pegawai');
+Route::post('/add', [Pegawai::class, 'handleForm'])->name('data-pegawai');
 Route::post('/data-pegawai/search', [Pegawai::class, 'search'])->name('search');
 
 Route::get('/tabelFrekuensi', [Pegawai::class, 'tabelFrekuensi'])->name('tabelFrekuensi');
 Route::get('bergolong', [Pegawai::class, 'bergolong'])->name('bergolong');
+
+Route::get('/crud', [Pegawai::class, 'crud'])->name('crud');
+
+Route::delete('/scores/{score}', [Pegawai::class, 'destroy'])->name('scores.destroy');
+Route::get('add' , [Pegawai::class, 'add']);
+
+Route::get('/edit/{id}', [Pegawai::class, 'crudEdit'])->name('edit');
+
+
+Route::put('/crud/{score}', [Pegawai::class, 'update'])->name('pegawai.update');

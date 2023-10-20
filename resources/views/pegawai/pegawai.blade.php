@@ -76,21 +76,7 @@
                 </form>
 
                 <h2 class="text-xl font-semibold mb-4">Tambah Skor Baru</h2>
-                <form method="post" class="mb-6">
-                    @csrf
-                    <div class="flex flex-col mb-4">
-                        <div class="mb-4">
-                            <label for="nomor" class="block mb-1">Nomer:</label>
-                            <input type="number" name="nomor" class="w-full py-2 px-4 border rounded focus:outline-none focus:ring focus:border-blue-300">
-                        </div>
-                        <div>
-                            <label for="skor" class="block mb-1">Skor:</label>
-                            <input type="number" name="skor" class="w-full py-2 px-4 border rounded focus:outline-none focus:ring focus:border-blue-300">
-                        </div>
-                    </div>
-
-                    <button type="submit" class="py-2 px-6 bg-green-500 text-white rounded hover:bg-green-600 focus:outline-none focus:ring focus:border-blue-300">Tambah Skor</button>
-                </form>
+                <a href="{{route('crud')}}"><button type="submit" class="mt-4 bg-green-500 hover:bg-green-700 text-white py-2 px-4 rounded block">Tambahs</button></a>
             </div>
         </div>
     </div>

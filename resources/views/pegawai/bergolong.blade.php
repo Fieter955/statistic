@@ -16,7 +16,7 @@
         <div class="container mx-auto flex items-center justify-between">
             <div class="text-white font-semibold text-xl">Fieter Statistik</div>
             <div class="hidden lg:flex items-center space-x-4">
-                <a href="{{route('data-pegawai')}}" class="text-white-400 hover:text-gray-400 ml-5">Data Tunggal</a>
+                <a href="/data-pegawai" class="text-white-400 hover:text-gray-400 ml-5">Data Tunggal</a>
                 <a href="{{ route('tabelFrekuensi')}}" class="text-white hover:text-gray-400 ml-5">Data Distribusi Frekuensi</a>
                 <a href="#" class="text-white hover:text-gray-400 ml-5">Tabel Deskripsi Data</a>
                 <a href="{{route('bergolong')}}" class="text-yellow-400 hover:text-gray-400 ml-5">Data Bergolong</a>
@@ -35,7 +35,7 @@
             <div class="p-4">
                 <ul class="space-y-2">
                     <li><a href="#" class="text-gray-400 hover:text-white">Dashboard</a></li>
-                    <li><a href="{{route('data-pegawai')}}" class="text-gray-400 hover:text-white">Data Tunggal</a></li>
+                    <li><a href="/data-pegawai" class="text-gray-400 hover:text-white">Data Tunggal</a></li>
                     <li><a href="{{ route('tabelFrekuensi') }}" class="text-gray-400 hover:text-white">Data Distribusi Frekuensi</a></li>
                     <li><a href="#" class="text-gray-400 hover:text-white">Tabel Deskripsi Data</a></li>
                     <li><a href="{{route('bergolong')}}" class="text-yellow-400 hover:text-white">Data Bergolong</a></li>

@@ -17,34 +17,10 @@ class Pegawai extends Controller
     {
         $scores = Score::all();
         
-        // Mengambil nilai minimum dan maksimum dari skor
-        $minScore = $scores->min('skor');
-        $maxScore = $scores->max('skor');
-    
-        // Menentukan jumlah kelas interval (bisa disesuaikan)
-        $jumlahKelas = 5;
         
-        // Menghitung lebar interval
-        $intervalWidth = ceil(($maxScore - $minScore) / $jumlahKelas);
-    
-        // Mengelompokkan data skor ke dalam kelas interval
-        $scoreGroups = [];
-        for ($i = 0; $i < $jumlahKelas; $i++) {
-            $lowerBound = $minScore + ($i * $intervalWidth);
-            $upperBound = $lowerBound + $intervalWidth - 1;
-            $count = $scores->whereBetween('skor', [$lowerBound, $upperBound])->count();
-    
-            // Menyimpan data kelas interval, nilai tengah, dan frekuensi
-            $scoreGroups[] = [
-                'kelas_interval' => "$lowerBound - $upperBound",
-                'nilai_tengah' => ($lowerBound + $upperBound) / 2,
-                'frekuensi' => $count,
-            ];
-        }
     
         return view('pegawai.pegawai', [
-            'scores' => $scores,
-            'scoreGroups' => $scoreGroups,
+            'scores' => $scores
         ]);
     }
     
@@ -124,12 +100,34 @@ class Pegawai extends Controller
     public function handleForm(Request $request){
         Score::create([
             'skor' => $request->skor,
-            'number' => $request->nomor,
         ]);
+       
+        return redirect('/crud');
+    }
+
+
+    public function crudEdit($id)
+    {
+        $score = Score::findOrFail($id); // Mengambil data skor berdasarkan ID
+        return view('pegawai.edit', ['score' => $score]);
+    }
+
+
+    public function crud(){
         $scores = Score::all();
-        return view('pegawai.pegawai', [
+        return view('pegawai.crud', [
             'scores'=>$scores
         ]);
+    }
+
+    public function destroy(Score $score)
+    {
+        $score->delete();
+        return redirect('/crud')->with('success', 'Data berhasil dihapus');
+    }
+
+    public function add(){
+        return view('pegawai.add');
     }
 
 
@@ -173,9 +171,13 @@ class Pegawai extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Score $score)
     {
-        //
+        $score->update([
+            'skor' => $request->skor,
+        ]);
+    
+        return redirect('/crud')->with('success', 'Data berhasil diperbarui');
     }
 
     /**
@@ -184,8 +186,5 @@ class Pegawai extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        //
-    }
+
 }
