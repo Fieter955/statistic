@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Score;
+use Illuminate\Support\Facades\DB;
+
 
 class Pegawai extends Controller
 {
@@ -47,6 +49,87 @@ class Pegawai extends Controller
         $scores = Score::where('skor', $skor)->get();
         return view('pegawai.search', [
             'scores'=>$scores
+        ]);
+    }
+
+
+    public function chi(){
+        $result = DB::table('tb_zed')->get();
+       
+
+        return view('pegawai.chi.chi', [
+            'chis' => $result
+        ]);
+    }
+
+    public function chisearch(Request $request){
+        $chi = $request->search;
+        
+        $depanchi = substr($chi, 0, -1);
+        
+
+        $belakangchi = substr($chi, -1);
+
+        $objeck = DB::table('tb_zed')->where('z', $depanchi)->first();
+
+    
+        
+        if('0' === $belakangchi){
+          $result = $objeck->nol;
+        }else 
+        if('1' === $belakangchi){
+            $result = $objeck->satu;
+        }else
+        if('2' === $belakangchi){
+            $result = $objeck->dua;
+        }else
+        if('3' === $belakangchi){
+            $result = $objeck->tiga;
+        }else
+        if('4' === $belakangchi){
+            $result = $objeck->empat;
+        }else
+        if('5' === $belakangchi){
+            $result = $objeck->lima;
+        }else
+        if('6' === $belakangchi){
+            $result = $objeck->enam;
+        }else
+        if('7' === $belakangchi){
+            $result = $objeck->tujuh;
+        }
+        else
+        if('8' === $belakangchi){
+            $result = $objeck->delapan;
+        }
+        else
+        if('9' === $belakangchi){
+            $result = $objeck->sembilan;
+        }
+
+    
+
+      
+
+
+        return view("pegawai.chi.search", [
+            'result'=>$result
+        ]);
+    }
+
+
+    public function tabeldeskripsiData()
+    {
+        $scores = Score::all();
+        $minScore = $scores->min('skor');
+        $maxScore = $scores->max('skor');
+        $mean = $scores->avg('skor');
+
+        return view('pegawai.deskripsiData', [
+            'scores' => $scores,
+            'minScore' => $minScore,
+            'maxScore' => $maxScore,
+            'mean' => $mean,
         ]);
     }
 

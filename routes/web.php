@@ -5,6 +5,9 @@ use App\Http\Controllers\PostController;
 use App\Models\Category;
 use App\Http\Controllers\ScoreController;
 use App\Http\Controllers\Pegawai;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\TokoOnline;
+use App\Http\Controllers\ImageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -61,18 +64,61 @@ Route::get('/scores', [ScoreController::class, 'index']);
 
 //Route::post('/scores/add', [Pegawai::class, 'handleForm'])->name('add');
 Route::get('/data-pegawai', [Pegawai::class, 'index'])->name('data-pegawai');
+
+Route::get('/chi', [Pegawai::class, 'chi']);
+
+Route::post('/chi', [Pegawai::class, 'chisearch'])->name("chi");
+
 Route::post('/add', [Pegawai::class, 'handleForm'])->name('data-pegawai');
+
 Route::post('/data-pegawai/search', [Pegawai::class, 'search'])->name('search');
 
 Route::get('/tabelFrekuensi', [Pegawai::class, 'tabelFrekuensi'])->name('tabelFrekuensi');
+
 Route::get('bergolong', [Pegawai::class, 'bergolong'])->name('bergolong');
+
+Route::get('tabeldeskripsi', [Pegawai::class, 'tabeldeskripsiData'])->name('tabeldeskripsi');
 
 Route::get('/crud', [Pegawai::class, 'crud'])->name('crud');
 
 Route::delete('/scores/{score}', [Pegawai::class, 'destroy'])->name('scores.destroy');
+
 Route::get('add' , [Pegawai::class, 'add']);
 
 Route::get('/edit/{id}', [Pegawai::class, 'crudEdit'])->name('edit');
 
-
 Route::put('/crud/{score}', [Pegawai::class, 'update'])->name('pegawai.update');
+
+
+
+
+
+
+
+
+// projek 2.3 dan uts tekweb
+Route::get('Home/home', [HomeController::class, 'index'])->name('home/home');
+Route::get('Home/about', [HomeController::class, 'about'])->name('about');
+Route::get('Home/portofolio', [HomeController::class, 'portofolio'])->name('portofolio');
+Route::get('Home/contact', [HomeController::class, 'contact'])->name('contact');
+Route::get('Home/uji', [HomeController::class, 'uji'])->name('uji');
+Route::get('utstekweb', [HomeController::class, 'utstekweb'])->name('utstekweb');
+Route::get('utstekweb/{slug}', [HomeController::class, 'utstekwebslug'])->name('detail');
+Route::get('inputbuku', [HomeController::class, 'inputbuku'])->name('inputbuku');
+Route::post('inputbuku', [HomeController::class, 'store'])->name('store.tekweb');
+
+
+
+Route::post('/store-image', [ImageController::class, 'store'])->name('store.image');
+Route::get('/store-image', [ImageController::class, 'index']);
+
+
+
+
+
+
+
+
+
+
+
