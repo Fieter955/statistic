@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\utstekweb;
+use App\Models\Book;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -131,7 +133,7 @@ class HomeController extends Controller
     }
 
     public function utstekweb(){
-        $datas = UtsTekweb::all();
+        $datas = Book::all();
        
         return view('utstekweb.landing',[
             'datas'=>$datas
@@ -140,7 +142,7 @@ class HomeController extends Controller
 
 
     public function utstekwebslug($slug){
-        $data = UtsTekweb::where('id', $slug)->first();
+        $data = Book::where('id', $slug)->first();
         
 
         return view('utstekweb.detail', [
@@ -150,7 +152,7 @@ class HomeController extends Controller
 
     public function inputbuku(){
        
-        $datas = UtsTekweb::all();
+        $datas = Book::all();
         return view('utstekweb.inputbuku', [
             'datas'=>$datas
         ]);
@@ -171,12 +173,16 @@ class HomeController extends Controller
             $fillname = time() . '.' . $file->getClientOriginalExtension();
             $file->move(public_path('images'), $fillname);
 
-            $image = new utstekweb;
+
+       
+
+            $image = new Book;
             $image->Gambar = $fillname;
             $image->Judul_Buku = $judul;
             $image->Pengarang = $pengarang;
             $image->Penulis = $penulis;
             $image->Tanggal_Terbit = $tanggal;
+            $image->user_id =1;
             $image->save();
 
             return view('utstekweb.inputbuku');
@@ -184,4 +190,62 @@ class HomeController extends Controller
 
 
     }
+
+    public function makan(){
+        return view('utstekweb.admin');
+    }
+
+    public function style(){
+        return view('style');
+    }
+
+    public function register()
+    {
+        return view('utstekweb.layout.register');
+    }
+
+    public function login()
+    {
+        return view('utstekweb.layout.login');
+    }
+
+public function loginRequested(Request $request)
+{
+    // Mendapatkan semua data buku (sepertinya tidak terkait dengan proses login, perlu dicheck)
+    $datas = Book::all();
+
+    $credentials = $request->only('email', 'password');
+    
+    // Periksa nilai $credentials untuk debug
+    // return $credentials;
+
+    if (Auth::attempt($credentials)) {
+        // Jika autentikasi berhasil
+        $request->session()->regenerate();
+        return redirect()->route('landing');
+    } else {
+        // Jika autentikasi gagal
+        return view('utstekweb.layout.login', [
+            'datas' => $datas
+        ]);
+    }
+}
+
+
+
+
+public function registerRequested(Request $request)
+{
+    $validated = $request->validate([
+        'name' => 'required|string|unique:users,name',
+        'email' => 'required',
+        'password' => 'required',
+    ]);
+
+    User::create($validated);
+    return view('utstekweb.layout.login');
+}
+
+
+
 }

@@ -20,6 +20,7 @@
                 <a href="{{ route('tabelFrekuensi')}}" class="text-white hover:text-gray-400 ml-5">Data Distribusi Frekuensi</a>
                 <a href="#" class="text-white hover:text-gray-400 ml-5">Tabel Deskripsi Data</a>
                 <a href="{{route('bergolong')}}" class="text-yellow-400 hover:text-gray-400 ml-5">Data Bergolong</a>
+                <a href="{{route('chi')}}" class="text-white hover:text-gray-400 ml-5">Table Z chi-kuadrat</a>
             </div>
             <!-- Tombol Menu untuk Menampilkan/Sembunyikan Sidebar -->
             <button @click="toggleSidebar" class="lg:hidden text-white focus:outline-none z-10 hover:text-gray-400">
@@ -39,6 +40,7 @@
                     <li><a href="{{ route('tabelFrekuensi') }}" class="text-gray-400 hover:text-white">Data Distribusi Frekuensi</a></li>
                     <li><a href="#" class="text-gray-400 hover:text-white">Tabel Deskripsi Data</a></li>
                     <li><a href="{{route('bergolong')}}" class="text-yellow-400 hover:text-white">Data Bergolong</a></li>
+                    <li><a href="{{route('chi')}}" class="text-gray-400 hover:text-white">Table Z chi-kuadrat</a></li>
                 </ul>
             </div>
         </aside>
@@ -107,3 +109,41 @@
 </body>
 
 </html>
+
+
+
+<div class="flex-1 p-8">
+            <div class="max-w-xl mx-auto bg-white p-8 rounded shadow-lg">
+                <h1 class="text-3xl font-semibold mb-6 text-center">Daftar Skor</h1>
+
+                <table class="w-full mb-6">
+                    <thead>
+                        <tr>
+                            <th class="py-2 px-4 border-b">Nomer</th>
+                            <th class="py-2 px-4 border-b">Skor</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($scores as $score)
+                        <tr>
+                            <td class="py-2 px-4 border-b text-center">{{ $loop->iteration }}</td>
+                            <td class="py-2 px-4 border-b text-center">{{ $score->skor }}</td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+
+                <h2 class="text-xl font-semibold mb-4">Cari Skor</h2>
+                <form method="post" action="/data-pegawai/search" class="mb-6">
+                    @csrf
+                    <div class="mb-4">
+                        <label for="skor" class="mr-4 self-center block">Skor:</label>
+                        <input type="text" name="skor" class="py-2 px-4 border rounded focus:outline-none focus:ring focus:border-blue-300 w-full">
+                        <button type="submit" class="py-2 px-6 mt-4 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300">Cari</button>
+                    </div>
+                </form>
+
+                <h2 class="text-xl font-semibold mb-4">Tambah Skor Baru</h2>
+                <a href="/crud"><button type="submit" class="mt-4 bg-green-500 hover:bg-green-700 text-white py-2 px-4 rounded block">Tambahs</button></a>
+            </div>
+        </div>

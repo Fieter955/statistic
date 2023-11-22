@@ -69,9 +69,9 @@ Route::get('/chi', [Pegawai::class, 'chi']);
 
 Route::post('/chi', [Pegawai::class, 'chisearch'])->name("chi");
 
-Route::post('/add', [Pegawai::class, 'handleForm'])->name('data-pegawai');
+Route::post('/add', [Pegawai::class, 'handleForm'])->name('handleForm');
 
-Route::post('/data-pegawai/search', [Pegawai::class, 'search'])->name('search');
+Route::post('/data-pegawai/{search}', [Pegawai::class, 'search'])->name('search');
 
 Route::get('/tabelFrekuensi', [Pegawai::class, 'tabelFrekuensi'])->name('tabelFrekuensi');
 
@@ -106,6 +106,12 @@ Route::get('utstekweb', [HomeController::class, 'utstekweb'])->name('utstekweb')
 Route::get('utstekweb/{slug}', [HomeController::class, 'utstekwebslug'])->name('detail');
 Route::get('inputbuku', [HomeController::class, 'inputbuku'])->name('inputbuku');
 Route::post('inputbuku', [HomeController::class, 'store'])->name('store.tekweb');
+Route::get('makan', [HomeController::class, 'makan'])->name('makan');
+Route::get('style', [HomeController::class, 'style'])->name('style');
+Route::get('login', [HomeController::class, 'login'])->name('login');
+Route::post('login', [HomeController::class, 'loginRequested'])->name('loginRequested');
+Route::get('register', [HomeController::class, 'register'])->name('register');
+Route::post('register', [HomeController::class, 'registerRequested'])->name('registerRequested');
 
 
 

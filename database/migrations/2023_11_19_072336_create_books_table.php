@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('uts_tekwebs', function (Blueprint $table) {
+        Schema::create('books', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
             $table->string('Judul_Buku')->default('Judul Buku Default');
@@ -21,6 +21,8 @@ return new class extends Migration
             $table->string('Pengarang')->default('Judul Buku Default');
             $table->date('Tanggal_Terbit')->default('2022-01-01'); 
             $table->string('Gambar');
+            $table->unsignedBigInteger('user_id')->default(1);
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
         });
     }

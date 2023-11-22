@@ -16,10 +16,11 @@
         <div class="container mx-auto flex items-center justify-between">
             <div class="text-white font-semibold text-xl">Fieter Statistik</div>
             <div class="hidden lg:flex items-center space-x-4">
-                <a href="{{route('data-pegawai')}}" class="text-yellow-400 hover:text-gray-400 ml-5">Data Tunggal</a>
+                <a href="/data-pegawai" class="text-yellow-400 hover:text-gray-400 ml-5">Data Tunggal</a>
                 <a href="{{ route('tabelFrekuensi')}}" class="text-white hover:text-gray-400 ml-5">Data Distribusi Frekuensi</a>
                 <a href="#" class="text-white hover:text-gray-400 ml-5">Tabel Deskripsi Data</a>
                 <a href="{{route('bergolong')}}" class="text-white hover:text-gray-400 ml-5">Data Bergolong</a>
+                <a href="{{route('chi')}}" class="text-white hover:text-gray-400 ml-5">Table Z chi-kuadrat</a>
             </div>
             <!-- Tombol Menu untuk Menampilkan/Sembunyikan Sidebar -->
             <button @click="toggleSidebar" class="lg:hidden text-white focus:outline-none z-10 hover:text-gray-400">
@@ -35,10 +36,11 @@
             <div class="p-4">
                 <ul class="space-y-2">
                     <li><a href="#" class="text-gray-400 hover:text-white">Dashboard</a></li>
-                    <li><a href="{{route('data-pegawai')}}" class="text-yellow-400 hover:text-white">Data Tunggal</a></li>
+                    <li><a href="/data-pegawai" class="text-yellow-400 hover:text-white">Data Tunggal</a></li>
                     <li><a href="{{ route('tabelFrekuensi') }}" class="text-gray-400 hover:text-white">Data Distribusi Frekuensi</a></li>
                     <li><a href="#" class="text-gray-400 hover:text-white">Tabel Deskripsi Data</a></li>
                     <li><a href="{{route('bergolong')}}" class="text-gray-400 hover:text-white">Data Bergolong</a></li>
+                    <li><a href="{{route('chi')}}" class="text-gray-400 hover:text-white">Table Z chi-kuadrat</a></li>
                 </ul>
             </div>
         </aside>
@@ -66,7 +68,7 @@
                 </table>
 
                 <h2 class="text-xl font-semibold mb-4">Cari Skor</h2>
-                <form method="post" action="{{route('search')}}" class="mb-6">
+                <form method="post" action="/data-pegawai/search" class="mb-6">
                     @csrf
                     <div class="mb-4">
                         <label for="skor" class="mr-4 self-center block">Skor:</label>
@@ -76,9 +78,10 @@
                 </form>
 
                 <h2 class="text-xl font-semibold mb-4">Tambah Skor Baru</h2>
-                <a href="{{route('crud')}}"><button type="submit" class="mt-4 bg-green-500 hover:bg-green-700 text-white py-2 px-4 rounded block">Tambahs</button></a>
+                <a href="/crud"><button type="submit" class="mt-4 bg-green-500 hover:bg-green-700 text-white py-2 px-4 rounded block">Tambah</button></a>
             </div>
         </div>
+        
     </div>
 
 
@@ -114,3 +117,6 @@
 </body>
 
 </html>
+
+
+

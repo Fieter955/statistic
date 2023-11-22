@@ -49,10 +49,10 @@
             </thead>
             <tbody>
                 <tr v-for="book in books" :key="book.title">
-                    <td class="border px-4 py-2" v-bind:title="{{ book.title }}">{{ book.title }}</td>
-                    <td class="border px-4 py-2">{{ book.author }}</td>
-                    <td class="border px-4 py-2">{{ book.year }}</td>
-                    <td class="border px-4 py-2">{{ book.pages }}</td>
+                    <td class="border px-4 py-2" {{!! book.title !!}} </td>
+                    <td class="border px-4 py-2">{{!! book.author !!}}</td>
+                    <td class="border px-4 py-2">{{!! book.year !!}}</td>
+                    <td class="border px-4 py-2">{{!! book.pages !!}}</td>
                 </tr>
             </tbody>
         </table>
